@@ -1,7 +1,7 @@
 
 
 ##accountExpires
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-1/#h-accountexpires
 #Set Values
 Set-ADUser -Identity TecMi -AccountExpirationDate (Get-Date).AddDays(5)
 
@@ -13,7 +13,7 @@ Get-ADUser -Identity TecMi -Properties AccountExpirationDate | Select-Object -Pr
 
 
 ##assistant
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-1/#h-assistant
 #Set Values
 Set-ADUser -Identity TecMi -add @{assistant=@("CN=Michael Seid,DC=au2mator,DC=local")}
 
@@ -25,7 +25,7 @@ Get-ADUser -Identity TecMi -Properties assistant | Select-Object -Property assis
 
 
 ##c
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-1/#h-c
 #Set Values
 Set-ADUser -Identity TecMi -Country AT
 Set-ADUser -Identity TecMi -Replace @{c="AT";co="Austria";countrycode=40}
@@ -39,7 +39,7 @@ Get-ADUser -Identity TecMi -Properties c | Select-Object -Property c
 
 
 ##carLicense
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-1/#h-carlicense
 #Set Values
 Set-ADUser -Identity TecMi -add @{carLicense=@("LL123AB")}
 
@@ -51,7 +51,7 @@ Get-ADUser -Identity TecMi -Properties carLicense | Select-Object -Property carL
 
 
 ##co
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-1/#h-co
 #Set Values
 Set-ADUser -Identity TecMi -Replace @{c="AT";co="Austria";countrycode=40}
 #https://www.iso.org/obp/ui/#search/code/
@@ -63,8 +63,22 @@ Set-ADUser -Identity TecMi -Clear co
 Get-ADUser -Identity TecMi -Properties co | Select-Object -Property co
 
 
+
+##countrycode
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-1/#h-countrycode
+#Set Values
+Set-ADUser -Identity TecMi -Replace @{c="AT";co="Austria";countrycode=40}
+#https://www.iso.org/obp/ui/#search/code/
+
+#CLEAR Value
+Set-ADUser -Identity TecMi -Clear countrycode
+
+#READ Value
+Get-ADUser -Identity TecMi -Properties co | Select-Object -Property countrycode
+
+
 ##company
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-1/#h-company
 #SET Values
 Set-ADUser -Identity TecMi -Company "au2mator"
 
@@ -77,7 +91,7 @@ Get-ADUser -Identity TecMi -Properties company | Select-Object -Property company
 
 
 ##department
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-1/#h-department
 #SET Values
 Set-ADUser -Identity TecMi -Department "CEO"
 
@@ -90,7 +104,7 @@ Get-ADUser -Identity TecMi -Properties Department | Select-Object -Property Depa
 
 
 ##Description
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-1/#h-description
 #SET Values
 Set-ADUser -Identity TecMi -Description "This is a Descripion"
 
@@ -104,7 +118,7 @@ Get-ADUser -Identity TecMi -Properties Description | Select-Object -Property Des
 
 
 ##displayname
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-1/#h-displayname
 #SET Values
 Set-ADUser -Identity TecMi -DisplayName "Techguy Michael"
 
@@ -117,7 +131,7 @@ Get-ADUser -Identity TecMi -Properties DisplayName | Select-Object -Property Dis
 
 
 ##division
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-1/#h-division
 #SET Values
 Set-ADUser -Identity TecMi -Division "My Division"
 
@@ -130,7 +144,7 @@ Get-ADUser -Identity TecMi -Properties division | Select-Object -Property divisi
 
 
 ##employeeID
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-1/#h-employeeid
 #SET Values
 Set-ADUser -Identity TecMi -EmployeeID "123455"
 
@@ -142,7 +156,7 @@ Get-ADUser -Identity TecMi -Properties employeeID | Select-Object -Property empl
 
 
 ##employeeNumber
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-1/#h-employeenumber
 #SET Values
 Set-ADUser -Identity TecMi -EmployeeNumber "123455"
 
@@ -154,7 +168,7 @@ Get-ADUser -Identity TecMi -Properties employeeNumber | Select-Object -Property 
 
 
 ##employeeType
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-1/#h-employeetype
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{employeeType="student"}
 
@@ -168,7 +182,7 @@ Get-ADUser -Identity TecMi -Properties employeeType | Select-Object -Property em
 
 
 ##facsimileTelephoneNumber
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-1/#h-facsimiletelephonenumber
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{facsimileTelephoneNumber="0165772345"}
 Set-ADUser -Identity TecMi -Fax "012345"
