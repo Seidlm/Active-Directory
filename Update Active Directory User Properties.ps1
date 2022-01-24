@@ -243,6 +243,42 @@ Set-ADUser -Identity TecMi -Clear HomePhone
 Get-ADUser -Identity TecMi -Properties HomePhone | Select-Object -Property HomePhone
 
 
+##homePostalAddress
+##
+#SET Values
+Set-ADUser -Identity TecMi -Replace @{homePostalAddress="Street, Place"}
+
+#CLEAR Value
+Set-ADUser -Identity TecMi -Clear homePostalAddress
+
+#READ Value
+Get-ADUser -Identity TecMi -Properties homePostalAddress | Select-Object -Property homePostalAddress
+
+
+##houseIdentifier
+##
+#SET Values
+Set-ADUser -Identity TecMi -Replace @{houseIdentifier="17"}
+
+#CLEAR Value
+Set-ADUser -Identity TecMi -Clear houseIdentifier
+
+#READ Value
+Get-ADUser -Identity TecMi -Properties houseIdentifier | Select-Object -Property houseIdentifier
+
+
+##info
+##
+#SET Values
+Set-ADUser -Identity TecMi -Replace @{info="INFO"}
+
+#CLEAR Value
+Set-ADUser -Identity TecMi -Clear info
+
+#READ Value
+Get-ADUser -Identity TecMi -Properties info | Select-Object -Property info
+
+
 
 ##initials
 ##
@@ -281,7 +317,6 @@ Set-ADUser -Identity TecMi -Clear ipPhone
 Get-ADUser -Identity TecMi -Properties ipPhone | Select-Object -Property ipPhone
 
 
-
 ##jpegPhoto
 ##
 #SET Values
@@ -305,6 +340,44 @@ Set-ADUser -Identity TecMi -Clear l
 
 #READ Value
 Get-ADUser -Identity TecMi -Properties City | Select-Object -Property City
+
+
+
+##manager
+##
+#SET Values
+Set-ADUser -Identity TecMi -Manager (Get-ADUser -Identity m.seidl)
+
+#CLEAR Value
+Set-ADUser -Identity TecMi -Clear Manager
+
+#READ Value
+Get-ADUser -Identity TecMi -Properties Manager | Select-Object -Property Manager
+
+
+
+##middleName
+##
+#SET Values
+Set-ADUser -Identity TecMi -Replace @{middleName="0123456"}
+
+#CLEAR Value
+Set-ADUser -Identity TecMi -Clear middleName
+
+#READ Value
+Get-ADUser -Identity TecMi -Properties middleName | Select-Object -Property middleName
+
+
+##mobile
+##
+#SET Values
+Set-ADUser -Identity TecMi -MobilePhone "+4 364 6 6 465"
+
+#CLEAR Value
+Set-ADUser -Identity TecMi -Clear mobile
+
+#READ Value
+Get-ADUser -Identity TecMi -Properties mobile | Select-Object -Property mobile
 
 
 
