@@ -244,12 +244,67 @@ Get-ADUser -Identity TecMi -Properties HomePhone | Select-Object -Property HomeP
 
 
 
+##initials
+##
+#SET Values
+Set-ADUser -Identity TecMi -Initials "SeiMi"
+
+#CLEAR Value
+Set-ADUser -Identity TecMi -Clear initials
+
+#READ Value
+Get-ADUser -Identity TecMi -Properties initials | Select-Object -Property initials
 
 
 
+##internationalISDNNumber
+##
+#SET Values
+Set-ADUser -Identity TecMi -Replace @{internationalISDNNumber="0123456"}
+
+#CLEAR Value
+Set-ADUser -Identity TecMi -Clear internationalISDNNumber
+
+#READ Value
+Get-ADUser -Identity TecMi -Properties internationalISDNNumber | Select-Object -Property internationalISDNNumber
+
+
+##ipPhone
+##
+#SET Values
+Set-ADUser -Identity TecMi -Replace @{ipPhone="0123456"}
+
+#CLEAR Value
+Set-ADUser -Identity TecMi -Clear ipPhone
+
+#READ Value
+Get-ADUser -Identity TecMi -Properties ipPhone | Select-Object -Property ipPhone
 
 
 
+##jpegPhoto
+##
+#SET Values
+$photo = [byte[]](Get-Content -Path D:\HEad.png -AsByteStream)
+Set-ADUser -Identity TecMi -Replace @{jpegPhoto=$photo} 
+
+#CLEAR Value
+Set-ADUser -Identity TecMi -Clear jpegPhoto
+
+#READ Value
+Get-ADUser -Identity TecMi -Properties jpegPhoto | Select-Object -Property jpegPhoto
+
+
+##l
+##
+#SET Values
+Set-ADUser -Identity TecMi -City "Pfarrkirchen"
+
+#CLEAR Value
+Set-ADUser -Identity TecMi -Clear l
+
+#READ Value
+Get-ADUser -Identity TecMi -Properties City | Select-Object -Property City
 
 
 
