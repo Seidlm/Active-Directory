@@ -195,7 +195,7 @@ Get-ADUser -Identity TecMi -Properties facsimileTelephoneNumber | Select-Object 
 
 
 ##givenName
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-2/#h-givenname
 #SET Values
 Set-ADUser -Identity TecMi -GivenName "Michael"
 
@@ -208,7 +208,7 @@ Get-ADUser -Identity TecMi -Properties GivenName | Select-Object -Property Given
 
 
 ##homeDirectory
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-2/#h-homedirectory
 #SET Values
 Set-ADUser -Identity TecMi -HomeDirectory "\\server\share"
 
@@ -220,7 +220,7 @@ Get-ADUser -Identity TecMi -Properties homeDirectory | Select-Object -Property h
 
 
 ##homeDrive
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-2/#h-homedrive
 #SET Values
 Set-ADUser -Identity TecMi -HomeDrive "z:"
 
@@ -232,7 +232,7 @@ Get-ADUser -Identity TecMi -Properties HomeDrive | Select-Object -Property HomeD
 
 
 ##homePhone
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-2/#h-homephone
 #SET Values
 Set-ADUser -Identity TecMi -HomePhone "+43 665 3728193"
 
@@ -244,7 +244,7 @@ Get-ADUser -Identity TecMi -Properties HomePhone | Select-Object -Property HomeP
 
 
 ##homePostalAddress
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-2/#h-homepostaladdress
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{homePostalAddress="Street, Place"}
 
@@ -256,7 +256,7 @@ Get-ADUser -Identity TecMi -Properties homePostalAddress | Select-Object -Proper
 
 
 ##houseIdentifier
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-2/#h-houseidentifier
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{houseIdentifier="17"}
 
@@ -268,7 +268,7 @@ Get-ADUser -Identity TecMi -Properties houseIdentifier | Select-Object -Property
 
 
 ##info
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-2/#h-info
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{info="INFO"}
 
@@ -281,7 +281,7 @@ Get-ADUser -Identity TecMi -Properties info | Select-Object -Property info
 
 
 ##initials
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-2/#h-initials
 #SET Values
 Set-ADUser -Identity TecMi -Initials "SeiMi"
 
@@ -294,7 +294,7 @@ Get-ADUser -Identity TecMi -Properties initials | Select-Object -Property initia
 
 
 ##internationalISDNNumber
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-2/#h-internationalisdnnumber
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{internationalISDNNumber="0123456"}
 
@@ -306,7 +306,7 @@ Get-ADUser -Identity TecMi -Properties internationalISDNNumber | Select-Object -
 
 
 ##ipPhone
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-2/#h-ipphone
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{ipPhone="0123456"}
 
@@ -318,7 +318,7 @@ Get-ADUser -Identity TecMi -Properties ipPhone | Select-Object -Property ipPhone
 
 
 ##jpegPhoto
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-2/#h-jpegphoto
 #SET Values
 $photo = [byte[]](Get-Content -Path D:\HEad.png -AsByteStream)
 Set-ADUser -Identity TecMi -Replace @{jpegPhoto=$photo} 
@@ -331,7 +331,7 @@ Get-ADUser -Identity TecMi -Properties jpegPhoto | Select-Object -Property jpegP
 
 
 ##l
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-2/#h-l
 #SET Values
 Set-ADUser -Identity TecMi -City "Pfarrkirchen"
 
@@ -344,7 +344,7 @@ Get-ADUser -Identity TecMi -Properties City | Select-Object -Property City
 
 
 ##manager
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-2/#h-manager
 #SET Values
 Set-ADUser -Identity TecMi -Manager (Get-ADUser -Identity m.seidl)
 
@@ -357,7 +357,7 @@ Get-ADUser -Identity TecMi -Properties Manager | Select-Object -Property Manager
 
 
 ##middleName
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-2/#h-middlename
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{middleName="0123456"}
 
@@ -369,7 +369,7 @@ Get-ADUser -Identity TecMi -Properties middleName | Select-Object -Property midd
 
 
 ##mobile
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-2/#h-mobile
 #SET Values
 Set-ADUser -Identity TecMi -MobilePhone "+4 364 6 6 465"
 
@@ -776,8 +776,6 @@ Set-ADUser -Identity TecMi -UserPrincipalName "TecMi@au2mator.local"
 
 #READ Value
 Get-ADUser -Identity TecMi -Properties UserPrincipalName | Select-Object -Property UserPrincipalName
-
-
 
 
 
