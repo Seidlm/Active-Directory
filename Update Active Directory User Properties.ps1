@@ -382,7 +382,7 @@ Get-ADUser -Identity TecMi -Properties mobile | Select-Object -Property mobile
 
 
 ##name
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-3/#h-name
 #SET Values
 Get-ADUser -Identity TecMi | Rename-ADObject -NewName "Michael Techguy" 
 
@@ -394,7 +394,7 @@ Get-ADUser -Identity TecMi -Properties name | Select-Object -Property name
 
 
 ##o
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-3/#h-o
 #SET Values
 Set-ADUser -Identity TecMi  -Replace @{o="au2mator"}
 
@@ -407,7 +407,7 @@ Get-ADUser -Identity TecMi -Properties o | Select-Object -Property o
 
 
 ##otherFacsimileTelephoneNumber
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-3/#h-otherfacsimiletelephonenumber
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{otherFacsimileTelephoneNumber=@("+123", "456", "+789")}
 Set-ADUser -Identity TecMi -Add @{otherFacsimileTelephoneNumber=@("656566")}
@@ -422,7 +422,7 @@ Get-ADUser -Identity TecMi -Properties otherFacsimileTelephoneNumber | Select-Ob
 
 
 ##otherHomePhone
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-3/#h-otherhomephone
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{otherHomePhone=@("+123", "456", "+789")}
 Set-ADUser -Identity TecMi -Add @{otherHomePhone=@("656566")}
@@ -437,7 +437,7 @@ Get-ADUser -Identity TecMi -Properties otherHomePhone | Select-Object -Property 
 
 
 ##otherIpPhone
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-3/#h-otheripphone
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{otherIpPhone=@("+123", "456", "+789")}
 Set-ADUser -Identity TecMi -Add @{otherIpPhone=@("656566")}
@@ -452,7 +452,7 @@ Get-ADUser -Identity TecMi -Properties otherIpPhone | Select-Object -Property ot
 
 
 ##otherMobile
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-3/#h-othermobile
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{otherMobile=@("+123", "456", "+789")}
 Set-ADUser -Identity TecMi -Add @{otherMobile=@("656566")}
@@ -467,7 +467,7 @@ Get-ADUser -Identity TecMi -Properties otherMobile | Select-Object -Property oth
 
 
 ##otherPager
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-3/#h-otherpager
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{otherPager=@("+123", "456", "+789")}
 Set-ADUser -Identity TecMi -Add @{otherPager=@("656566")}
@@ -481,7 +481,7 @@ Get-ADUser -Identity TecMi -Properties otherPager | Select-Object -Property othe
 
 
 ##otherTelephone
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-3/#h-othertelephone
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{otherTelephone=@("+123", "456", "+789")}
 Set-ADUser -Identity TecMi -Add @{otherTelephone=@("656566")}
@@ -496,7 +496,7 @@ Get-ADUser -Identity TecMi -Properties otherTelephone | Select-Object -Property 
 
 
 ##pager
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-3/#h-pager
 #SET Values
 Set-ADUser -Identity TecMi  -Replace @{pager="12334534"}
 
@@ -509,7 +509,7 @@ Get-ADUser -Identity TecMi -Properties pager | Select-Object -Property pager
 
 
 ##personalTitle
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-3/#h-personaltitle
 #SET Values
 Set-ADUser -Identity TecMi  -Replace @{personalTitle="Dr"}
 
@@ -522,7 +522,7 @@ Get-ADUser -Identity TecMi -Properties personalTitle | Select-Object -Property p
 
 
 ##photo
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-3/#h-photo
 #SET Values
 $photo = [byte[]](Get-Content -Path D:\HEad.png -AsByteStream)
 Set-ADUser -Identity TecMi -Replace @{photo=$photo} 
@@ -537,7 +537,7 @@ Get-ADUser -Identity TecMi -Properties photo | Select-Object -Property photo
 
 
 ##physicalDeliveryOfficeName
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-3/#h-physicaldeliveryofficename
 #SET Values
 Set-ADUser -Identity TecMi  -Replace @{physicalDeliveryOfficeName="Floor 2"}
 
@@ -549,7 +549,7 @@ Get-ADUser -Identity TecMi -Properties physicalDeliveryOfficeName | Select-Objec
 
 
 ##postalAddress
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-3/#h-postaladdress
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{postalAddress=@("Street 2, 4044 Place")}
 Set-ADUser -Identity TecMi -Add @{postalAddress=@("Street 1, 4044 Place")}
@@ -564,7 +564,7 @@ Get-ADUser -Identity TecMi -Properties postalAddress | Select-Object -Property p
 
 
 ##postalCode
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-3/#h-postalcode
 #SET Values
 Set-ADUser -Identity TecMi  -PostalCode "4540"
 
@@ -576,7 +576,7 @@ Get-ADUser -Identity TecMi -Properties postalCode | Select-Object -Property post
 
 
 ##postOfficeBox
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-3/#h-postofficebox
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{postOfficeBox=@("Street 2, 4044 Place")}
 Set-ADUser -Identity TecMi -Add @{postOfficeBox=@("Street 1, 4044 Place")}
