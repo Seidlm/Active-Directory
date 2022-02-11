@@ -592,7 +592,7 @@ Get-ADUser -Identity TecMi -Properties postOfficeBox | Select-Object -Property p
 
 
 ##preferredLanguage
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-4/#h-preferredlanguage
 #SET Values
 Set-ADUser -Identity TecMi  -Replace @{preferredLanguage="DE-AT"}
 
@@ -606,7 +606,7 @@ Get-ADUser -Identity TecMi -Properties preferredLanguage | Select-Object -Proper
 
 
 ##primaryGroupID
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-4/#h-primarygroupid
 #SET Values
 $ADGroup=Get-ADGroup -Identity "Test Primary"
 Add-ADGroupMember -Identity $ADGroup.DistinguishedName -Members "TecMi"
@@ -623,7 +623,7 @@ Get-ADUser -Identity TecMi -Properties primaryGroupID | Select-Object -Property 
 
 
 ##primaryInternationalISDNNumber
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-4/#h-primaryinternationalisdnnumber
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{primaryInternationalISDNNumber="0123456"}
 
@@ -636,7 +636,7 @@ Get-ADUser -Identity TecMi -Properties primaryInternationalISDNNumber | Select-O
 
 
 ##primaryTelexNumber
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-4/#h-primarytelexnumber
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{primaryTelexNumber="0123456"}
 
@@ -649,7 +649,7 @@ Get-ADUser -Identity TecMi -Properties primaryTelexNumber | Select-Object -Prope
 
 
 ##profilePath
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-4/#h-profilepath
 #SET Values
 Set-ADUser -Identity TecMi -ProfilePath "\\server1\share\User"
 
@@ -662,7 +662,7 @@ Get-ADUser -Identity TecMi -Properties ProfilePath | Select-Object -Property Pro
 
 
 ##sAMAccountName
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-4/#h-samaccountname
 #SET Values
 Set-ADUser -Identity TecMi -SamAccountName "TecMi"
 
@@ -674,7 +674,7 @@ Get-ADUser -Identity TecMi -Properties SamAccountName | Select-Object -Property 
 
 
 ##scriptPath
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-4/#h-scriptpath
 #SET Values
 Set-ADUser -Identity TecMi -ScriptPath "\\server1\share\User\logon.bat"
 
@@ -687,7 +687,7 @@ Get-ADUser -Identity TecMi -Properties ScriptPath | Select-Object -Property Scri
 
 
 ##secretary
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-4/#h-secretary
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{secretary=@((Get-ADuser -Identity "m.seidl").DistinguishedName)}
 Set-ADUser -Identity TecMi -Add  @{secretary=@((Get-ADuser -Identity "HofmeisterJ").DistinguishedName)}
@@ -701,7 +701,7 @@ Get-ADUser -Identity TecMi -Properties secretary | Select-Object -Property secre
 
 
 ##seeAlso
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-4/#h-seealso
 #SET Values
 Set-ADUser -Identity TecMi -Replace @{seeAlso=@((Get-ADuser -Identity "m.seidl").DistinguishedName)}
 Set-ADUser -Identity TecMi -Add  @{seeAlso=@((Get-ADuser -Identity "HofmeisterJ").DistinguishedName)}
@@ -716,7 +716,7 @@ Get-ADUser -Identity TecMi -Properties seeAlso | Select-Object -Property seeAlso
 
 
 ##sn
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-4/#h-sn
 #SET Values
 Set-ADUser -Identity TecMi -Surname "Seidl"
 
@@ -728,7 +728,7 @@ Get-ADUser -Identity TecMi -Properties sn | Select-Object -Property sn
 
 
 ##street
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-4/#h-street
 #SET Values
 Set-ADUser -Identity TecMi -StreetAddress "Wilhelm-Fein-Straﬂe 37"
 
@@ -740,7 +740,7 @@ Get-ADUser -Identity TecMi -Properties StreetAddress | Select-Object -Property S
 
 
 ##telephoneNumber
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-4/#h-telephonenumber
 #SET Values
 Set-ADUser -Identity TecMi -OfficePhone "+4 364 6 6 465"
 
@@ -754,7 +754,7 @@ Get-ADUser -Identity TecMi -Properties OfficePhone | Select-Object -Property Off
 
 
 ##title
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-4/#h-title
 #SET Values
 Set-ADUser -Identity TecMi -Title "CEO"
 
@@ -767,7 +767,7 @@ Get-ADUser -Identity TecMi -Properties title | Select-Object -Property title
 
 
 ##userPrincipalName
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-4/#h-userprincipalname
 #SET Values
 Set-ADUser -Identity TecMi -UserPrincipalName "TecMi@au2mator.local"
 
@@ -780,7 +780,7 @@ Get-ADUser -Identity TecMi -Properties UserPrincipalName | Select-Object -Proper
 
 
 ##wWWHomePage
-##
+##https://www.techguy.at/how-to-update-every-single-active-directory-user-attributes-with-powershell-part-4/#h-wwwhomepage
 #SET Values
 Set-ADUser -Identity TecMi -HomePage "www.au2mator.com"
 
