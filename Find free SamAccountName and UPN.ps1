@@ -2,7 +2,7 @@
 [string]$LogPath = "C:\Users\seimi\OneDrive - Seidl Michael\2-au2mator\1 - TECHGUY\GitHub\Active-Directory" #Path to store the Lofgile, only local or Hybrid
 [string]$LogfileName = "FindUsername" #FileName of the Logfile, only local or Hybrid
 [int]$DeleteAfterDays = 10 #Time Period in Days when older Files will be deleted, only local or Hybrid
-# See My Loggign Template for Details: https://github.com/Seidlm/PowerShell-Templates
+# See My Logging Template for Details: https://github.com/Seidlm/PowerShell-Templates
 
 
 
@@ -10,6 +10,7 @@
 $FirstName="Michael"
 $LastName="Seidl"
 
+$delimeter=";"
 
 
 #prepare String Replacements
@@ -53,6 +54,7 @@ function Write-TechguyLog {
         else {
             Write-Verbose ("Path: ""{0}"" already exists." -f $logPath)
         }
+        # Use the -f operator to build the log file path with variables
         [string]$logFile = '{0}\{1}_{2}.log' -f $logPath, $(Get-Date -Format 'yyyyMMdd'), $LogfileName
         $logEntry = '{0}: <{1}> {2}' -f $(Get-Date -Format yyyyMMdd_HHmmss), $Type, $Text
         Add-Content -Path $logFile -Value $logEntry
