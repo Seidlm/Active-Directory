@@ -1,4 +1,6 @@
-﻿#region Parameters
+﻿#Post: https://www.techguy.at/find-unique-samaccountname-and-upn-for-user-onboarding-with-the-help-of-ai/
+
+#region Parameters
 [string]$LogPath = "C:\Temp" #Path to store the Lofgile, only local or Hybrid
 [string]$LogfileName = "FindUsername" #FileName of the Logfile, only local or Hybrid
 [int]$DeleteAfterDays = 10 #Time Period in Days when older Files will be deleted, only local or Hybrid
@@ -7,7 +9,7 @@
 
 
 #region AI-Settings
-#See PSAI for more Detaisl to use the AI Module
+#See PSAI for more Details to use the AI Module
 # https://www.powershellgallery.com/packages/PSAI
 $UseAI = $true #$true, $false
 
