@@ -1,21 +1,43 @@
-#region Parameters
-[string]$LogPath = "C:\Users\seimi\OneDrive - Seidl Michael\2-au2mator\1 - TECHGUY\GitHub\Active-Directory" #Path to store the Lofgile, only local or Hybrid
+ï»¿#region Parameters
+[string]$LogPath = "C:\Temp" #Path to store the Lofgile, only local or Hybrid
 [string]$LogfileName = "FindUsername" #FileName of the Logfile, only local or Hybrid
 [int]$DeleteAfterDays = 10 #Time Period in Days when older Files will be deleted, only local or Hybrid
 # See My Logging Template for Details: https://github.com/Seidlm/PowerShell-Templates
 
 
 
-#Settings
-$FirstName="Michael"
-$LastName="Seidl"
+#region AI-Settings
+#See PSAI for more Detaisl to use the AI Module
+# https://www.powershellgallery.com/packages/PSAI
+$UseAI = $true #$true, $false
 
-$delimeter=";"
+$secrets = @{
+    apiURI         = "apiURL"
+    apiVersion     = "apiVersion"
+    apiKey         = "ApiKey"
+    deploymentName = "deploymentName"
+}
+
+if ($UseAI) {
+    Set-OAIProvider AzureOpenAI
+    Set-AzOAISecrets @secrets
+}
+
+#endregion AI-Settings
+
+
+#region Settings
+$FirstName = "Finn"
+$LastName = "Ucker"
+$delimeter = ";"
+
+
+#endregion Settings
 
 
 #prepare String Replacements
 $prestring = @'
-ß;ö;ü;ä;à;á;é;è;ó;ò;ú;ù;í;ì
+ÃŸ;Ã¶;Ã¼;Ã¤;Ã ;Ã¡;Ã©;Ã¨;Ã³;Ã²;Ãº;Ã¹;Ã­;Ã¬
 '@;
 $poststring = @'
 ss;oe;ue;ae;a;a;e;e;o;o;u;u;i;i
@@ -26,6 +48,8 @@ ss;oe;ue;ae;a;a;e;e;o;o;u;u;i;i
 [array]$poststrings = $poststring -split $delimeter;
 #endregion Parameters
 
+
+#region Function
 function Write-TechguyLog {
     [CmdletBinding()]
     param
@@ -110,8 +134,8 @@ function Get-SamAccountName {
                 "LastName-FirstName" {
                     Write-TechguyLog -Type INFO -Text "Nameorder: LastName-FirstName"
                     Write-TechguyLog -Type INFO -Text "Define FirstEnd and SecondEnd"
-                    if ($UsedLetters[0] -eq "max"){$FirstEnd=$LastName.length} else {$FirstEnd=$UsedLetters[0] }
-                    if ($UsedLetters[1] -eq "max"){$SecondEnd=$FirstName.length} else {$SecondEnd=$UsedLetters[1] }
+                    if ($UsedLetters[0] -eq "max") { $FirstEnd = $LastName.length } else { $FirstEnd = $UsedLetters[0] }
+                    if ($UsedLetters[1] -eq "max") { $SecondEnd = $FirstName.length } else { $SecondEnd = $UsedLetters[1] }
                     Write-TechguyLog -Type INFO -Text "FirstEnd: $($FirstEnd)"
                     Write-TechguyLog -Type INFO -Text "SecondEnd:  $($SecondEnd)"
 
@@ -127,15 +151,15 @@ function Get-SamAccountName {
                 "FirstName-LastName" {
                     Write-TechguyLog -Type INFO -Text "Nameorder: FirstName-LastName"
                     Write-TechguyLog -Type INFO -Text "Define FirstEnd and SecondEnd"
-                    if ($UsedLetters[0] -eq "max"){$FirstEnd=$FirstName.length} else {$FirstEnd=$UsedLetters[0] }
-                    if ($UsedLetters[1] -eq "max"){$SecondEnd=$LastName.length} else {$SecondEnd=$UsedLetters[1] }
+                    if ($UsedLetters[0] -eq "max") { $FirstEnd = $FirstName.length } else { $FirstEnd = $UsedLetters[0] }
+                    if ($UsedLetters[1] -eq "max") { $SecondEnd = $LastName.length } else { $SecondEnd = $UsedLetters[1] }
                     Write-TechguyLog -Type INFO -Text "FirstEnd: $($FirstEnd)"
                     Write-TechguyLog -Type INFO -Text "SecondEnd:  $($SecondEnd)"
 
-                    $FirstNamesub = $LastName.Substring(0, $FirstEnd)
+                    $FirstNamesub = $FirstName.Substring(0, $FirstEnd)
                     Try {
                 
-                        $LastNamesub = $FirstName.Substring(0, $SecondEnd)
+                        $LastNamesub = $LastName.Substring(0, $SecondEnd)
                     }
                     Catch {
                         $FirstNamesub = $FirstName
@@ -153,7 +177,29 @@ function Get-SamAccountName {
         if ($username -ne '') {
             if (!(get-aduser -filter { SamAccountName -eq $Username })) {
                 Write-TechguyLog -Type INFO -Text "SAM is unique"
-                break
+
+                #Now Check AI if the Username is offensive or embarrassing
+                if ($UseAI) {
+                    Write-TechguyLog -Type INFO -Text "USE AI and check if the Username is offensive"
+                    $prompt = "Determine if $UserName is offensive, funny, known brand or embarrassing , and if so, in what language?"
+                    $instructions = "date: $(get-date) - check for offensive, known brand, funny or embarrassing  phrase - output JSON with keys for UserName, Language (English, Spanish, etc.), Is_Offensive (boolean), Is_Funny (boolean), Is_Brand (boolean), and Reason (Funny, Sexual, Racial, Gender, Nationality, etc.), include comments."
+                    
+                    $agent = New-Agent -Instructions $instructions
+                    $CheckResponse = $agent | Get-AgentResponse -Prompt $prompt | ConvertFrom-Json
+
+                    if ($CheckResponse.Is_Offensive -eq $true -or $CheckResponse.Is_Funny -eq $true -or $CheckResponse.Is_Brand -eq $true) {
+                        Write-TechguyLog -Type INFO -Text "SAM is offensive, funny or a brand: $($CheckResponse.Reason)"
+                        $username = ''
+                    }
+                    else {
+                        Write-TechguyLog -Type INFO -Text "AI havent found anything"
+                        break
+                    }
+                }
+                else {
+                    Write-TechguyLog -Type INFO -Text "AI is disabled, and Username is unique"
+                    break
+                }
             }
             else {
                 $username = ''
@@ -210,8 +256,8 @@ function Get-UPN {
                 "LastName-FirstName" {
                     Write-TechguyLog -Type INFO -Text "Nameorder: LastName-FirstName"
                     Write-TechguyLog -Type INFO -Text "Define FirstEnd and SecondEnd"
-                    if ($UsedLetters[0] -eq "max"){$FirstEnd=$LastName.length} else {$FirstEnd=$UsedLetters[0] }
-                    if ($UsedLetters[1] -eq "max"){$SecondEnd=$FirstName.length} else {$SecondEnd=$UsedLetters[1] }
+                    if ($UsedLetters[0] -eq "max") { $FirstEnd = $LastName.length } else { $FirstEnd = $UsedLetters[0] }
+                    if ($UsedLetters[1] -eq "max") { $SecondEnd = $FirstName.length } else { $SecondEnd = $UsedLetters[1] }
                     Write-TechguyLog -Type INFO -Text "FirstEnd: $($FirstEnd)"
                     Write-TechguyLog -Type INFO -Text "SecondEnd:  $($SecondEnd)"
 
@@ -227,8 +273,8 @@ function Get-UPN {
                 "FirstName-LastName" {
                     Write-TechguyLog -Type INFO -Text "Nameorder: FirstName-LastName"
                     Write-TechguyLog -Type INFO -Text "Define FirstEnd and SecondEnd"
-                    if ($UsedLetters[0] -eq "max"){$FirstEnd=$FirstName.length} else {$FirstEnd=$UsedLetters[0] }
-                    if ($UsedLetters[1] -eq "max"){$SecondEnd=$LastName.length} else {$SecondEnd=$UsedLetters[1] }
+                    if ($UsedLetters[0] -eq "max") { $FirstEnd = $FirstName.length } else { $FirstEnd = $UsedLetters[0] }
+                    if ($UsedLetters[1] -eq "max") { $SecondEnd = $LastName.length } else { $SecondEnd = $UsedLetters[1] }
                     Write-TechguyLog -Type INFO -Text "FirstEnd: $($FirstEnd)"
                     Write-TechguyLog -Type INFO -Text "SecondEnd:  $($SecondEnd)"
 
@@ -253,7 +299,28 @@ function Get-UPN {
         if ($UPN -ne '') {
             if (!(get-aduser -filter { UserPrinciaplName -eq $UPN })) {
                 Write-TechguyLog -Type INFO -Text "UPN is unique"
-                break
+                #Now Check AI if the UPN is offensive or embarrassing
+                if ($UseAI) {
+                    Write-TechguyLog -Type INFO -Text "USE AI and check if the UPN is offensive"
+                    $prompt = "Determine if $UPN is offensive, funny, known brand or embarrassing , and if so, in what language?"
+                    $instructions = "date: $(get-date) - check for offensive, known brand, funny or embarrassing  phrase - output JSON with keys for UPN, Language (English, Spanish, etc.), Is_Offensive (boolean), Is_Funny (boolean), Is_Brand (boolean), and Reason (Funny, Sexual, Racial, Gender, Nationality, etc.), include comments."
+                    
+                    $agent = New-Agent -Instructions $instructions
+                    $CheckResponse = $agent | Get-AgentResponse -Prompt $prompt | ConvertFrom-Json
+
+                    if ($CheckResponse.Is_Offensive -eq $true -or $CheckResponse.Is_Funny -eq $true -or $CheckResponse.Is_Brand -eq $true) {
+                        Write-TechguyLog -Type INFO -Text "UPN is offensive, funny or a brand: $($CheckResponse.Reason)"
+                        $UPN = ''
+                    }
+                    else {
+                        Write-TechguyLog -Type INFO -Text "AI havent found anything"
+                        break
+                    }
+                }
+                else {
+                    Write-TechguyLog -Type INFO -Text "AI is disabled, and UPN is unique"
+                    break
+                }
             }
             else {
                 $UPN = ''
@@ -270,19 +337,16 @@ function Get-UPN {
    
 }
 
+#endregion Function
 
 Write-TechguyLog -Type INFO -Text "START Script"
 
-Get-SamAccountName -FirstName $FirstName -LastName $LastName -NameOrder "LastName-FirstName" -NameDelimiter "" -Cases "4-2;3-3;2-4;1-5" 
+Get-SamAccountName -FirstName $FirstName -LastName $LastName -NameOrder "FirstName-LastName"  -NameDelimiter "" -Cases "1-4;2-3;3-2;4-1" 
 
-Get-UPN -FirstName $FirstName -LastName $LastName -NameOrder "FirstName-LastName" -NameDelimiter "." -Cases "1-max;max-max" -Domain "au2mator.com"
+Get-UPN -FirstName $FirstName -LastName $LastName -NameOrder "FirstName-LastName" -NameDelimiter "." -Cases "1-max;max-max" -Domain "@au2mator.com"
 
 
-#Clean Logs
-if ($environment -eq "AAHybrid" -or $environment -eq "local") {
-    Write-TechguyLog -Type INFO -Text "Clean Log Files"
-    $limit = (Get-Date).AddDays(-$DeleteAfterDays)
-    Get-ChildItem -Path $LogPath -Filter "*$LogfileName.log" | Where-Object { !$_.PSIsContainer -and $_.CreationTime -lt $limit } | Remove-Item -Force
-}
 
 Write-TechguyLog -Type INFO -Text "END Script"
+
+
